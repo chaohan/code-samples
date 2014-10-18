@@ -3,25 +3,25 @@
  *  @author Alex Han
  */
 
-public class Node
+public class Node <keyType extends Comparable, valueType>
 {
-      private Comparable key;
-      private Object value;
+      private keyType key;
+      private valueType value;
       private boolean isRed = false;
       
       public Node right = null;
       public Node left  = null;
       
-      public Node(Comparable key)
+      public Node(keyType newKey)
       {
-            this.key = key;
-            this.value = null;
+            key = newKey;
+            value = null;
       }
       
-      public Node(Comparable key, Object value)
+      public Node(keyType newKey, valueType newValue)
       {
-            this.key = key;
-            this.value = value;
+            key = newKey;
+            value = newValue;
       }
       
       public boolean isRed()
@@ -30,25 +30,25 @@ public class Node
       public void flipColor()
       { isRed = !isRed; }
       
-      public Comparable getKey()
+      public keyType getKey()
       { return key; }
 
-      public Object getValue()
+      public valueType getValue()
       { return value; }
 
-      public void setKey(Comparable newKey)
-      { this.key = newKey; }
+      public void setKey(keyType newKey)
+      { key = newKey; }
       
-      public void setValue(Object newValue)
-      { this.value = newValue; }
+      public void setValue(valueType newValue)
+      { value = newValue; }
 
       public static void main(String[] args)
       {
-            Node my_node  = new Node(0.0);
+            Node<Integer,Integer> my_node  = new Node<>(0);
             my_node.flipColor();
-            System.out.println("color is red?"+my_node.isRed());
-            System.out.println("key="+my_node.getKey());
-            System.out.println("value="+my_node.getValue());
+            System.out.println("check color=red is true:"+my_node.isRed());
+            System.out.println("check key=0:"+my_node.getKey());
+            System.out.println("check value=null"+my_node.getValue());
       }
 }
 

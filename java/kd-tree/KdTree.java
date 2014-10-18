@@ -12,9 +12,9 @@
 
 public class KdTree {
 
-      private Node runner;
+      private Node<Point2D,RectHV> iterator;
       private int side;
-      private Node root;
+      private Node<Point2D,RectHV> root;
       private int size;
 
       public KdTree() // construct an empty set of points
@@ -29,12 +29,12 @@ public class KdTree {
       public void insert(Point2D p)
       // add the point to the set (if it is not already in the set)
       {
-            if (root==null) { root = new Node(p); size++; }
+            if (root==null) { root = new Node<>(p); size++; }
             else
             {
                   search(p);
-                  if (side==-1) { runner.left = new Node(p); size++; }
-                  else if (side==1) { runner.right = new Node(p); size++; }
+                  if (side==-1) { iterator.left = new Node<>(p); size++; }
+                  else if (side==1) { iterator.right = new Node(p); size++; }
             }
             
       }
@@ -42,36 +42,38 @@ public class KdTree {
       public boolean contains(Point2D p) // does the set contain point p?
       {
             if (root==null) { return false; }
-            else { search(p); return side==0; } // bug--> reinitialize side value
+            else { search(p); return side==0; }
       }
       
 /**   
-      a helper method, when terminates: for non-existing point, "runner" is at the parent
-      node to the correct position to inser it, and "side" indicates left (-1) or right(1) 
-      to the parent node. for an existing node, "runner" is at its position and side=0
+      a helper method, when terminates: for non-existing point, "iterator" is at 
+      the parent node to the correct position to inser it, and "side" indicates 
+      left (-1) or right(1) to the parent node. for an existing node, "iterator" 
+      is at the correct searched position and side=0
  */
       private void search(Point2D newPt)
       {
-            runner = root; // the case when root is null is taken care of in other blocks
+            iterator = root;
+            // root==null case is taken care of in methods using this method
             boolean goLeft;
             boolean compareX = true;
             while (true)
             {
-                  Point2D current = (Point2D) runner.getKey();
+                  Point2D current = iterator.getKey();
                   
                   if (compareX) { goLeft = ( newPt.x() < current.x() ); }
                   else { goLeft = ( newPt.y() < current.y() ); }
                         
                   if (goLeft)
                   {
-                        if (runner.left==null) {side=-1; break;}
-                        else { runner = runner.left; compareX=!compareX; }
+                        if (iterator.left==null) {side=-1; break;}
+                        else { iterator = iterator.left; compareX=!compareX; }
                   }
                   else
                   {
                         if(newPt.compareTo(current)==0) { side=0; break; }
-                        else if (runner.right==null) { side=1; break; }
-                        else { runner = runner.right; compareX=!compareX; }
+                        else if (iterator.right==null) { side=1; break; }
+                        else { iterator = iterator.right; compareX=!compareX; }
                   }
             }
       }
@@ -129,19 +131,19 @@ public class KdTree {
             KdTree newTree = new KdTree();
             for (int j=1;j<10;j++)
             {
-                  newTree.insert(new Point2D(0.111111*j,0.111111*j));
+                  newTree.insert(new Point2D(0.111*j,0.111*j));
             }
             System.out.println("points inserted:"+newTree.size());
-            Node runner = newTree.root;
+            Node<Point2D,RectHV> iter = newTree.root;
             for (int j=1;j<10;j++)
             {
-                  Point2D pt = (Point2D) runner.getKey();
+                  Point2D pt = iter.getKey();
                   System.out.println(pt.x());
-                  runner = runner.right;
+                  iter = iter.right;
             }
             for (int j=1;j<10;j++)
             {
-                System.out.println(newTree.contains(new Point2D(0.111111*j,0.111111*j)));
+                System.out.println(newTree.contains(new Point2D(0.111*j,0.111*j)));
             }
             
       }
