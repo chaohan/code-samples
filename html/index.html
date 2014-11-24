@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <head>
-      <title> title in the page head bar </title>
+      <title> Title for the browser head bar </title>
+      <!-- the following meta enables device customizable viewing of the page -->
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width" />
 </head>
 
 <body>
       <!-- headline separator comment-->
-      <h1> <q>Headline Structure</q>: this is a level 1 headline </h1>
-      <p> Level 1 paragrah </p>
+      <h1 id="top"> Part 1: Headline Structure (this is a level 1 headline) </h1>
+      <p> Level 1 paragrah (and <a href="#bottom"> this</a> 
+      is a navigator to the bootom of this page) </p>
             <h2> Level 2 headline </h2>
-            <p>
-                  Level 2 paragrah, with some <b> bold-face </b> fonts, also known
-                  as <strong> strong </strong> fonts
-            </p>
+            <p> Level 2 paragrah, with some <b> bold-face </b> fonts, also known
+            as <strong> strong </strong> fonts </p>
                   <h3> Level 3 headline </h3>
                   <p>
                         Level 3 paragrah, with some <i> italics </i> fonts, also
                         known as <em> emphasized </em> fonts, also known as a
                         <cite>cite/citation</cite>
                   </p>
-                  <p>
-                        a blockquote is a block of quotes:
-                        <blockquote cite="http://www.wikipedia.com">
-                              something<br/>
-                              something<br/>
-                              something<br/>
-                              the cited source is only shown in the source code<br/>
-                              but can be added here as <br/>
-                              <a href="http://en.wikipedia.com" target="_blank">
-                              an external link that opens in a new window
-                              </a><br/>
-                              the full info of an abbreviation/acronym can be viewed
-                              by moving the mouse cursor over chosen text, such as
-                              <abbr title="wikipedia"> WIKI</abbr>, or
-                              <acronym title="Something Something Something">
-                                    S3
-                              </acronym>
+      
+      <hr/>
+      <p> long horizontal lines<p>
+      <hr/>
+      
+      <h1> Part 2: Quotations and Fonts </h1>
+      <p> Quotation can be in quotation marks <q>like this</q>, or as a block:
+            <blockquote cite="http://www.wikipedia.com">
+                  the cited source is only shown in the source code<br/>
+                  but can be added here as <br/>
+                  <a href="http://en.wikipedia.com" target="_blank">
+                  an external link that opens in a new window
+                  </a><br/>
+                  the full info of an abbreviation/acronym can be viewed
+                  by moving the mouse cursor over chosen text, such as
+                  <abbr title="wikipedia"> WIKI</abbr>, or
+                  <acronym title="Something Something Something">
+                        S3
+                  </acronym>
+                  <font size="1"> texts of size 1 </font> <br/>
+                  <font size="2"> texts of size 2 </font> <br/>
+                  <font size="3"> texts of size 3 </font> <br/>
+                  <font size="4"> texts of size 4 </font> <br/>
+                  <font size="5"> texts of size 5 </font> <br/>
+                  <font size="6"> texts of size 6 </font> <br/>
+                  <font size="7"> texts of size 7 </font> <br/>
 
-                        </blockquote>
-                  </p>
+            </blockquote>
+      </p>
 
       <hr/>
-      <p> really long horizontal lines<p>
+      <p> long horizontal lines<p>
       <hr/>
+      
       <!-- headline separator comment-->
-      <h1> Another Level 1 section </h1>
+      <h1> Part 3: Text styles & Lists</h1>
 
       <p> Paragraph-1: display a numbered/ordered list:
             <ol>
@@ -52,7 +63,7 @@
                   <li> last </li>
             </ol>
       </p>
-      
+
       <p> Paragraph-2: display an unordered list:
       <ul>
             <li> an item </li>
@@ -82,7 +93,41 @@
       </p>
       
 
+      <h1> Part 4: Images </h1>
+
+      <p> An example of a standalone image (linked to another website): </p>
+      <a href="http://en.wikipedia.org/wiki/HTML5" target="_blank">
+      <img src="images/html5.png" 
+      alt="discription when image not displated" 
+      title="texts when hover over image" width="200" height="200" />
+      </a>
+
+      <p> <font size="4">
+      An image can also go inside a paragrah, such as here
+      after many many many words 
+      <img src="images/html5.png" width="20" height="20" />. 
+      Then with many many many many many many
+      many many many many many many many many
+      many many many many many many words after.
+      </font>
+      </p>
       
+      <p> A figure includes images (in sequence) and some captioning:
+      <figure>
+      <img src="images/html5.png" width="200" height="200" />
+      <img src="images/css3.png" width="180" height="180" />
+      <figcaption> some captioning describing the image. note that the figure goes
+            exactly where its codes are</figcaption>
+      </figure>
+      and the paragrah continues afterwards...
+      </p>
+
+      <h1>Part 5: Tables</h1>
+
+      <hr/>
+      <p id="bottom">
+      This is the bottom of the page. Go to <a href="#top"> top</a>.
+      </p>
 </body>
 
 </html>

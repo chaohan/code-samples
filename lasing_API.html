@@ -25,6 +25,7 @@ author:&nbsp;alex&nbsp;han,&nbsp;starting&nbsp;april/2014</tt></p>
 <tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl>
 <dt><font face="helvetica, arial"><a href="stack.html#eigenmode">eigenmode</a>
+</font></dt><dt><font face="helvetica, arial"><a href="stack.html#genetic_search">genetic_search</a>
 </font></dt><dt><font face="helvetica, arial"><a href="stack.html#mode_search">mode_search</a>
 </font></dt><dt><font face="helvetica, arial"><a href="stack.html#random_stack">random_stack</a>
 </font></dt><dt><font face="helvetica, arial"><a href="stack.html#wavepacket">wavepacket</a>
@@ -96,25 +97,50 @@ between&nbsp;amplitudes&nbsp;hence&nbsp;across&nbsp;layers)</tt></dd></dl>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="genetic_search">class <strong>genetic_search</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>a&nbsp;genetic&nbsp;algoritm&nbsp;that&nbsp;finds&nbsp;the&nbsp;best&nbsp;shaping&nbsp;choice,&nbsp;for&nbsp;the&nbsp;case<br>
+when&nbsp;worse-than-desired&nbsp;shaping&nbsp;ability&nbsp;is&nbsp;analyzed<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="genetic_search-__init__"><strong>__init__</strong></a>(self, stack, wp, jtar, pplsize, elitesize)</dt></dl>
+
+<dl><dt><a name="genetic_search-evolve"><strong>evolve</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="genetic_search-fitness_score"><strong>fitness_score</strong></a>(self, indv)</dt></dl>
+
+<dl><dt><a name="genetic_search-generation_scores"><strong>generation_scores</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="genetic_search-new_indv"><strong>new_indv</strong></a>(self)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="incident_wp">class <strong>incident_wp</strong></a>(<a href="stack.html#wavepacket">wavepacket</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt>class&nbsp;of&nbsp;wavepackets&nbsp;that&nbsp;are&nbsp;incident&nbsp;to&nbsp;the&nbsp;stack<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="incident_wp-add_mode"><strong>add_mode</strong></a>(self, lambda0, a0)</dt><dd><tt>&lt;void&gt;:&nbsp;add&nbsp;a&nbsp;new&nbsp;incident&nbsp;mode</tt></dd></dl>
+<dl><dt><a name="incident_wp-add_mode"><strong>add_mode</strong></a>(self, lambda0, a0)</dt><dd><tt>&lt;void&gt;:&nbsp;add&nbsp;a&nbsp;new&nbsp;incident&nbsp;mode<br>
+NOTE:&nbsp;should&nbsp;be&nbsp;a&nbsp;private&nbsp;method,&nbsp;since&nbsp;self.<strong>modes</strong><br>
+are&nbsp;not&nbsp;sorted&nbsp;when&nbsp;applying&nbsp;this&nbsp;alone</tt></dd></dl>
 
-<dl><dt><a name="incident_wp-add_packet"><strong>add_packet</strong></a>(self, Nmodes, wlrange)</dt><dd><tt>&lt;void&gt;:&nbsp;add&nbsp;an&nbsp;incident&nbsp;<a href="#wavepacket">wavepacket</a>,&nbsp;Gaussian-distributed,&nbsp;equally-spaced&nbsp;<br>
-in&nbsp;frequency&nbsp;with&nbsp;unit&nbsp;height,&nbsp;covering&nbsp;'Nmodes'&nbsp;within&nbsp;wavelength&nbsp;range&nbsp;'wlrange',&nbsp;<br>
-centred&nbsp;at&nbsp;spatial&nbsp;position&nbsp;z=0</tt></dd></dl>
+<dl><dt><a name="incident_wp-add_packet"><strong>add_packet</strong></a>(self, Nmodes, wlrange, type<font color="#909090">='gaussian'</font>, height<font color="#909090">=1.0</font>)</dt><dd><tt>&lt;void&gt;:&nbsp;add&nbsp;an&nbsp;incident&nbsp;<a href="#wavepacket">wavepacket</a>&nbsp;equally-spaced&nbsp;in&nbsp;frequency&nbsp;<br>
+by&nbsp;default&nbsp;Gaussian-distributed&nbsp;with&nbsp;unit&nbsp;height,&nbsp;covering&nbsp;'Nmodes'&nbsp;(&gt;1)&nbsp;<br>
+within&nbsp;wavelength&nbsp;range&nbsp;[wlrange[0],wlrange[1]]&nbsp;(inclusive),&nbsp;centred&nbsp;<br>
+at&nbsp;spatial&nbsp;position&nbsp;z=0</tt></dd></dl>
 
 <dl><dt><a name="incident_wp-compute_inversion"><strong>compute_inversion</strong></a>(self)</dt></dl>
 
 <dl><dt><a name="incident_wp-get_1PIS"><strong>get_1PIS</strong></a>(self, layer)</dt><dd><tt>"&lt;2D&nbsp;numpy&nbsp;array&gt;:&nbsp;return&nbsp;the&nbsp;1photon&nbsp;spectrum&nbsp;at&nbsp;'layer'</tt></dd></dl>
 
-<dl><dt><a name="incident_wp-get_2PS"><strong>get_2PS</strong></a>(self, z)</dt><dd><tt>&lt;2D&nbsp;array&gt;:&nbsp;return&nbsp;the&nbsp;2-photon&nbsp;power&nbsp;spectrum&nbsp;at&nbsp;given&nbsp;location&nbsp;z</tt></dd></dl>
+<dl><dt><a name="incident_wp-get_2PS"><strong>get_2PS</strong></a>(self, z, label<font color="#909090">='nR'</font>)</dt><dd><tt>&lt;2D&nbsp;array&gt;:&nbsp;return&nbsp;the&nbsp;non-Raman&nbsp;('nR')&nbsp;or&nbsp;Raman/Stokes&nbsp;('R')<br>
+2-photon&nbsp;power&nbsp;spectrum&nbsp;at&nbsp;given&nbsp;location&nbsp;z</tt></dd></dl>
 
-<dl><dt><a name="incident_wp-inversion_at"><strong>inversion_at</strong></a>(self, layer)</dt></dl>
+<dl><dt><a name="incident_wp-inversion_at"><strong>inversion_at</strong></a>(self, layer, Nstep<font color="#909090">=100</font>)</dt></dl>
 
 <dl><dt><a name="incident_wp-plot_1PIS"><strong>plot_1PIS</strong></a>(self, layers, filename<font color="#909090">=''</font>)</dt><dd><tt>&lt;plot&gt;:&nbsp;plot&nbsp;the&nbsp;power&nbsp;spectrum&nbsp;of&nbsp;the&nbsp;incident&nbsp;eigenmodes&nbsp;at&nbsp;<br>
 &nbsp;<br>
@@ -130,15 +156,19 @@ points.&nbsp;Specify&nbsp;the&nbsp;y&nbsp;axis&nbsp;max&nbsp;range&nbsp;with&nbs
 
 <hr>
 Methods inherited from <a href="stack.html#wavepacket">wavepacket</a>:<br>
-<dl><dt><a name="incident_wp-__init__"><strong>__init__</strong></a>(self, stack)</dt><dd><tt>&lt;constructor&gt;:&nbsp;takes&nbsp;the&nbsp;stack&nbsp;pointer,&nbsp;creates&nbsp;empty&nbsp;container&nbsp;for&nbsp;modes</tt></dd></dl>
+<dl><dt><a name="incident_wp-__init__"><strong>__init__</strong></a>(self, stack)</dt><dd><tt>&lt;constructor&gt;:&nbsp;takes&nbsp;the&nbsp;stack&nbsp;pointer,&nbsp;creates&nbsp;empty&nbsp;array&nbsp;for&nbsp;modes</tt></dd></dl>
 
 <dl><dt><a name="incident_wp-advance"><strong>advance</strong></a>(self, amount)</dt><dd><tt>&lt;void&gt;:&nbsp;advance&nbsp;the&nbsp;<a href="#wavepacket">wavepacket</a>&nbsp;forward&nbsp;in&nbsp;time&nbsp;by&nbsp;'amount'</tt></dd></dl>
+
+<dl><dt><a name="incident_wp-apply_shaping"><strong>apply_shaping</strong></a>(self, mask)</dt></dl>
 
 <dl><dt><a name="incident_wp-get_field"><strong>get_field</strong></a>(self, z, layer)</dt><dd><tt>&lt;complex&gt;:&nbsp;return&nbsp;the&nbsp;total&nbsp;complex&nbsp;field&nbsp;at&nbsp;position</tt></dd></dl>
 
 <dl><dt><a name="incident_wp-get_size"><strong>get_size</strong></a>(self)</dt><dd><tt>&lt;int&gt;:&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;modes&nbsp;already&nbsp;added</tt></dd></dl>
 
 <dl><dt><a name="incident_wp-get_wavelengths"><strong>get_wavelengths</strong></a>(self)</dt><dd><tt>&lt;numpy&nbsp;array&gt;:&nbsp;return&nbsp;the&nbsp;array&nbsp;of&nbsp;wavelengths&nbsp;included&nbsp;in&nbsp;the&nbsp;<a href="#wavepacket">wavepacket</a></tt></dd></dl>
+
+<dl><dt><a name="incident_wp-sort_modes"><strong>sort_modes</strong></a>(self)</dt><dd><tt>&lt;void&gt;:&nbsp;sort&nbsp;self.<strong>modes</strong>&nbsp;in&nbsp;ascending&nbsp;order&nbsp;in&nbsp;frequency</tt></dd></dl>
 
 </td></tr></table> <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -166,7 +196,7 @@ wavlength&nbsp;range&nbsp;"wlrange",&nbsp;with&nbsp;transmission&gt;'threshold'<
 
 <dl><dt><a name="mode_search-plot_profiles"><strong>plot_profiles</strong></a>(self, items, filename<font color="#909090">=''</font>)</dt><dd><tt>&lt;plot&gt;:&nbsp;plot&nbsp;the&nbsp;profiles&nbsp;in&nbsp;the&nbsp;'items'&nbsp;array</tt></dd></dl>
 
-<dl><dt><a name="mode_search-sort"><strong>sort</strong></a>(self, attr, N<font color="#909090">=None</font>)</dt><dd><tt>&lt;void&gt;:&nbsp;sort&nbsp;the&nbsp;first&nbsp;N&nbsp;items&nbsp;in&nbsp;the&nbsp;domain&nbsp;according&nbsp;to&nbsp;the&nbsp;attribute,<br>
+<dl><dt><a name="mode_search-sort_with"><strong>sort_with</strong></a>(self, attr, N<font color="#909090">=None</font>)</dt><dd><tt>&lt;void&gt;:&nbsp;sort&nbsp;the&nbsp;first&nbsp;N&nbsp;items&nbsp;in&nbsp;the&nbsp;domain&nbsp;according&nbsp;to&nbsp;the&nbsp;attribute,<br>
 &nbsp;<br>
 the&nbsp;column&nbsp;indices&nbsp;are&nbsp;rearranged&nbsp;to&nbsp;numeric&nbsp;sequence</tt></dd></dl>
 
@@ -177,24 +207,18 @@ the&nbsp;column&nbsp;indices&nbsp;are&nbsp;rearranged&nbsp;to&nbsp;numeric&nbsp;
 <font color="#000000" face="helvetica, arial"><a name="random_stack">class <strong>random_stack</strong></a></font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>object&nbsp;class&nbsp;of&nbsp;the&nbsp;stack&nbsp;consisting&nbsp;of&nbsp;arbitrary&nbsp;dielectric&nbsp;layers&nbsp;with&nbsp;arbitrary&nbsp;length&nbsp;<br>
-&nbsp;<br>
+<td colspan=2><tt>object&nbsp;class&nbsp;of&nbsp;the&nbsp;stack&nbsp;consisting&nbsp;of&nbsp;arbitrary&nbsp;<br>
+dielectric&nbsp;layers&nbsp;with&nbsp;arbitrary&nbsp;length<br>
 ---&nbsp;attribute&nbsp;list&nbsp;---<br>
-&nbsp;<br>
 "layers":&nbsp;&lt;DataFrame&gt;&nbsp;representing&nbsp;the&nbsp;layers<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="random_stack-__init__"><strong>__init__</strong></a>(self, N, n0, n1, dL, L, L1<font color="#909090">=None</font>)</dt><dd><tt>&lt;constructor&gt;:&nbsp;instantiate&nbsp;the&nbsp;stack.&nbsp;two&nbsp;default&nbsp;layers&nbsp;are:<br>
-&nbsp;<br>
+<dl><dt><a name="random_stack-__init__"><strong>__init__</strong></a>(self, N, n0, n1, dL, L, dL1<font color="#909090">=None</font>, L1<font color="#909090">=None</font>)</dt><dd><tt>&lt;constructor&gt;:&nbsp;instantiate&nbsp;the&nbsp;stack.&nbsp;two&nbsp;default&nbsp;layers&nbsp;are:<br>
 &nbsp;&nbsp;&nbsp;0th&nbsp;layer&nbsp;has&nbsp;refractive&nbsp;index&nbsp;n0,&nbsp;at&nbsp;z0&nbsp;=&nbsp;-10L,<br>
-&nbsp;<br>
 &nbsp;&nbsp;&nbsp;1st&nbsp;layer&nbsp;has&nbsp;refractive&nbsp;index&nbsp;n1,&nbsp;at&nbsp;z1&nbsp;=&nbsp;0.<br>
-&nbsp;<br>
-N&gt;=2&nbsp;(excluding&nbsp;layer&nbsp;0)&nbsp;layers&nbsp;will&nbsp;be&nbsp;generated&nbsp;with&nbsp;alternating&nbsp;refractive&nbsp;index.<br>
-&nbsp;<br>
-the&nbsp;length&nbsp;for&nbsp;each&nbsp;layer&nbsp;is&nbsp;a&nbsp;uniform&nbsp;random&nbsp;variable&nbsp;in&nbsp;[L-dL,L+dL],&nbsp;optional&nbsp;L1<br>
-&nbsp;<br>
-average&nbsp;for&nbsp;second&nbsp;layer&nbsp;type.</tt></dd></dl>
+N&gt;=2&nbsp;(excluding&nbsp;layer&nbsp;0)&nbsp;layers&nbsp;will&nbsp;be&nbsp;generated&nbsp;with&nbsp;alternating&nbsp;<br>
+refractive&nbsp;index&nbsp;and&nbsp;thickness,&nbsp;which&nbsp;is&nbsp;a&nbsp;uniform&nbsp;random&nbsp;variable&nbsp;<br>
+in&nbsp;[L-dL,L+dL],&nbsp;or&nbsp;[L1-dL1,L1+dL1]</tt></dd></dl>
 
 <dl><dt><a name="random_stack-add_inversion"><strong>add_inversion</strong></a>(self, j, amount)</dt><dd><tt>&lt;void&gt;:&nbsp;add&nbsp;to&nbsp;the&nbsp;population&nbsp;inversion&nbsp;in&nbsp;layer&nbsp;j&nbsp;<br>
 &nbsp;<br>
@@ -216,13 +240,13 @@ average&nbsp;for&nbsp;second&nbsp;layer&nbsp;type.</tt></dd></dl>
 &nbsp;<br>
 lasing&nbsp;('l')&nbsp;frequency&nbsp;ranges</tt></dd></dl>
 
-<dl><dt><a name="random_stack-get_reflection"><strong>get_reflection</strong></a>(self, lambda0)</dt><dd><tt>&lt;float&gt;:&nbsp;return&nbsp;the&nbsp;reflection&nbsp;probability&nbsp;at&nbsp;wavelength&nbsp;lambda0</tt></dd></dl>
+<dl><dt><a name="random_stack-get_reflection"><strong>get_reflection</strong></a>(self, lambda0)</dt><dd><tt>&lt;complex&gt;:&nbsp;return&nbsp;the&nbsp;complex&nbsp;reflection&nbsp;amplitude&nbsp;at&nbsp;wavelength&nbsp;lambda0</tt></dd></dl>
 
 <dl><dt><a name="random_stack-get_refr"><strong>get_refr</strong></a>(self, i)</dt><dd><tt>&lt;float&gt;:&nbsp;return&nbsp;the&nbsp;refractive&nbsp;index&nbsp;of&nbsp;i'th&nbsp;layer</tt></dd></dl>
 
 <dl><dt><a name="random_stack-get_stacksize"><strong>get_stacksize</strong></a>(self)</dt><dd><tt>&lt;int&gt;:&nbsp;return&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;layers&nbsp;including&nbsp;layer&nbsp;0</tt></dd></dl>
 
-<dl><dt><a name="random_stack-get_transmission"><strong>get_transmission</strong></a>(self, lambda0)</dt><dd><tt>&lt;float&gt;:&nbsp;return&nbsp;the&nbsp;transmission&nbsp;probability&nbsp;at&nbsp;wavelength&nbsp;lambda0</tt></dd></dl>
+<dl><dt><a name="random_stack-get_transmission"><strong>get_transmission</strong></a>(self, lambda0)</dt><dd><tt>&lt;complex&gt;:&nbsp;return&nbsp;the&nbsp;complex&nbsp;transmission&nbsp;amplitude&nbsp;at&nbsp;wavelength&nbsp;lambda0</tt></dd></dl>
 
 <dl><dt><a name="random_stack-plot"><strong>plot</strong></a>(self, show_inversion<font color="#909090">=False</font>, inv_max<font color="#909090">=None</font>, filename<font color="#909090">=''</font>)</dt><dd><tt>&lt;python&nbsp;plot&gt;&nbsp;plot&nbsp;the&nbsp;stack's&nbsp;refractive&nbsp;index&nbsp;and&nbsp;population&nbsp;inversion<br>
 &nbsp;<br>
@@ -230,7 +254,7 @@ as&nbsp;a&nbsp;function&nbsp;of&nbsp;location.&nbsp;input&nbsp;"filename"&nbsp;i
 &nbsp;<br>
 pyplot.show()&nbsp;is&nbsp;called&nbsp;if&nbsp;left&nbsp;blank</tt></dd></dl>
 
-<dl><dt><a name="random_stack-scan"><strong>scan</strong></a>(self, property, wlrange, Ndata, filename<font color="#909090">=''</font>)</dt><dd><tt>&lt;python&nbsp;plot&gt;&nbsp;scan&nbsp;'transmission'&nbsp;or&nbsp;'reflection'&nbsp;in&nbsp;the&nbsp;specified&nbsp;range&nbsp;<br>
+<dl><dt><a name="random_stack-scan"><strong>scan</strong></a>(self, property, wlrange, Ndata, filename<font color="#909090">=''</font>, figsize<font color="#909090">=(18, 5)</font>)</dt><dd><tt>&lt;&gt;:&nbsp;scan&nbsp;'transmission'&nbsp;or&nbsp;'reflection'&nbsp;in&nbsp;the&nbsp;specified&nbsp;range&nbsp;<br>
 &nbsp;<br>
 of&nbsp;wavelengths,&nbsp;with&nbsp;"Ndata"&nbsp;many&nbsp;points.</tt></dd></dl>
 
@@ -256,15 +280,19 @@ of&nbsp;wavelengths,&nbsp;with&nbsp;"Ndata"&nbsp;many&nbsp;points.</tt></dd></dl
 "modes"&nbsp;:&nbsp;&lt;array&gt;&nbsp;contains&nbsp;the&nbsp;eigenmodes<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="wavepacket-__init__"><strong>__init__</strong></a>(self, stack)</dt><dd><tt>&lt;constructor&gt;:&nbsp;takes&nbsp;the&nbsp;stack&nbsp;pointer,&nbsp;creates&nbsp;empty&nbsp;container&nbsp;for&nbsp;modes</tt></dd></dl>
+<dl><dt><a name="wavepacket-__init__"><strong>__init__</strong></a>(self, stack)</dt><dd><tt>&lt;constructor&gt;:&nbsp;takes&nbsp;the&nbsp;stack&nbsp;pointer,&nbsp;creates&nbsp;empty&nbsp;array&nbsp;for&nbsp;modes</tt></dd></dl>
 
 <dl><dt><a name="wavepacket-advance"><strong>advance</strong></a>(self, amount)</dt><dd><tt>&lt;void&gt;:&nbsp;advance&nbsp;the&nbsp;<a href="#wavepacket">wavepacket</a>&nbsp;forward&nbsp;in&nbsp;time&nbsp;by&nbsp;'amount'</tt></dd></dl>
+
+<dl><dt><a name="wavepacket-apply_shaping"><strong>apply_shaping</strong></a>(self, mask)</dt></dl>
 
 <dl><dt><a name="wavepacket-get_field"><strong>get_field</strong></a>(self, z, layer)</dt><dd><tt>&lt;complex&gt;:&nbsp;return&nbsp;the&nbsp;total&nbsp;complex&nbsp;field&nbsp;at&nbsp;position</tt></dd></dl>
 
 <dl><dt><a name="wavepacket-get_size"><strong>get_size</strong></a>(self)</dt><dd><tt>&lt;int&gt;:&nbsp;return&nbsp;the&nbsp;number&nbsp;of&nbsp;modes&nbsp;already&nbsp;added</tt></dd></dl>
 
 <dl><dt><a name="wavepacket-get_wavelengths"><strong>get_wavelengths</strong></a>(self)</dt><dd><tt>&lt;numpy&nbsp;array&gt;:&nbsp;return&nbsp;the&nbsp;array&nbsp;of&nbsp;wavelengths&nbsp;included&nbsp;in&nbsp;the&nbsp;<a href="#wavepacket">wavepacket</a></tt></dd></dl>
+
+<dl><dt><a name="wavepacket-sort_modes"><strong>sort_modes</strong></a>(self)</dt><dd><tt>&lt;void&gt;:&nbsp;sort&nbsp;self.<strong>modes</strong>&nbsp;in&nbsp;ascending&nbsp;order&nbsp;in&nbsp;frequency</tt></dd></dl>
 
 </td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -273,15 +301,16 @@ of&nbsp;wavelengths,&nbsp;with&nbsp;"Ndata"&nbsp;many&nbsp;points.</tt></dd></dl
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-asr_mask"><strong>asr_mask</strong></a>(wp, j)</dt><dd><tt>&lt;numpy&nbsp;array&gt;&nbsp;return&nbsp;the&nbsp;anti-symmetric&nbsp;random&nbsp;phase&nbsp;mask,&nbsp;centered&nbsp;at&nbsp;the&nbsp;peak&nbsp;index<br>
-of&nbsp;the&nbsp;1PIS&nbsp;in&nbsp;layer&nbsp;j</tt></dd></dl>
- <dl><dt><a name="-calculateM"><strong>calculateM</strong></a>(stack, omega)</dt><dd><tt>&lt;numpy&nbsp;2D&nbsp;array&gt;:&nbsp;calculate&nbsp;and&nbsp;return&nbsp;the&nbsp;"M"&nbsp;matrix</tt></dd></dl>
+<td width="100%"><dl><dt><a name="-autocorrelate"><strong>autocorrelate</strong></a>(data, Nsample)</dt></dl>
+ <dl><dt><a name="-calculateM"><strong>calculateM</strong></a>(stack, omega)</dt><dd><tt>&lt;numpy&nbsp;2D&nbsp;array&gt;:&nbsp;calculate&nbsp;and&nbsp;return&nbsp;the&nbsp;"M"&nbsp;matrix.<br>
+NOTE:&nbsp;singular&nbsp;matrix&nbsp;error&nbsp;for&nbsp;M^-1&nbsp;may&nbsp;arise&nbsp;for&nbsp;highly&nbsp;periodic&nbsp;stacks,<br>
+may&nbsp;be&nbsp;due&nbsp;to&nbsp;diverging&nbsp;tranmission&nbsp;probability</tt></dd></dl>
  <dl><dt><a name="-calculateT"><strong>calculateT</strong></a>(stack, omega, j)</dt><dd><tt>&lt;numpy&nbsp;2D&nbsp;array&gt;:&nbsp;calculate&nbsp;and&nbsp;return&nbsp;T&nbsp;matrix&nbsp;connecting&nbsp;layers&nbsp;j&nbsp;to&nbsp;j+1,<br>
 &nbsp;<br>
 from&nbsp;<a href="#random_stack">random_stack</a>&nbsp;'stack'&nbsp;and&nbsp;<a href="#eigenmode">eigenmode</a>&nbsp;frequency&nbsp;'omega'</tt></dd></dl>
  <dl><dt><a name="-connect"><strong>connect</strong></a>(stack1, stack2)</dt><dd><tt>&lt;<a href="#random_stack">random_stack</a>&gt;:&nbsp;put&nbsp;stack2&nbsp;behind&nbsp;stack1,&nbsp;spaced&nbsp;out&nbsp;by&nbsp;length&nbsp;L</tt></dd></dl>
  <dl><dt><a name="-contrast"><strong>contrast</strong></a>(target, reference)</dt><dd><tt>&lt;numpy&nbsp;array&gt;:&nbsp;contrast&nbsp;two&nbsp;numpy&nbsp;arrays</tt></dd></dl>
- <dl><dt><a name="-contrast_mask"><strong>contrast_mask</strong></a>(wp, jtar, jref, keyword<font color="#909090">='min'</font>)</dt><dd><tt>&lt;numpy&nbsp;array&gt;:&nbsp;determine&nbsp;the&nbsp;mode&nbsp;localization&nbsp;contrast&nbsp;in&nbsp;'jtar'&nbsp;<br>
+ <dl><dt><a name="-contrast_mask"><strong>contrast_mask</strong></a>(wp, jtar, jref)</dt><dd><tt>&lt;numpy&nbsp;array&gt;:&nbsp;determine&nbsp;the&nbsp;mode&nbsp;localization&nbsp;contrast&nbsp;in&nbsp;'jtar'&nbsp;<br>
 but&nbsp;not&nbsp;'jref'&nbsp;layers,&nbsp;and&nbsp;return&nbsp;randomized&nbsp;phases&nbsp;for&nbsp;'jtar'</tt></dd></dl>
  <dl><dt><a name="-displace"><strong>displace</strong></a>(stack, j, amount)</dt><dd><tt>&lt;<a href="#random_stack">random_stack</a>&gt;:&nbsp;return&nbsp;the&nbsp;stack&nbsp;whose&nbsp;layers&nbsp;after&nbsp;and&nbsp;EXCLUDING&nbsp;layer&nbsp;<br>
 &nbsp;<br>
@@ -290,15 +319,17 @@ j&nbsp;are&nbsp;uniformly&nbsp;displaced&nbsp;by&nbsp;'amount'&nbsp;(displace&nb
 in&nbsp;the&nbsp;wp&nbsp;to&nbsp;interfere&nbsp;maximally&nbsp;in&nbsp;layer&nbsp;j</tt></dd></dl>
  <dl><dt><a name="-invM"><strong>invM</strong></a>(stack, omega)</dt><dd><tt>&lt;numpy&nbsp;2D&nbsp;array&gt;:&nbsp;calculate&nbsp;and&nbsp;return&nbsp;the&nbsp;inverse&nbsp;"M"&nbsp;matrix</tt></dd></dl>
  <dl><dt><a name="-load"><strong>load</strong></a>(filename)</dt><dd><tt>&lt;<a href="#random_stack">random_stack</a>&gt;:&nbsp;load&nbsp;the&nbsp;<a href="#random_stack">random_stack</a>&nbsp;from&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-locate_spectral_peaks"><strong>locate_spectral_peaks</strong></a>(data)</dt><dd><tt>&lt;numpy&nbsp;array&gt;&nbsp;return&nbsp;all&nbsp;(index,value)&nbsp;pairs&nbsp;of&nbsp;the&nbsp;spectral&nbsp;peaks&nbsp;in&nbsp;the&nbsp;given&nbsp;data<br>
+sorted&nbsp;in&nbsp;descending&nbsp;order&nbsp;of&nbsp;data&nbsp;value</tt></dd></dl>
  <dl><dt><a name="-mean_index"><strong>mean_index</strong></a>(input)</dt><dd><tt>&lt;float&gt;:&nbsp;calculate&nbsp;the&nbsp;mean&nbsp;index&nbsp;value</tt></dd></dl>
  <dl><dt><a name="-normalize"><strong>normalize</strong></a>(input)</dt><dd><tt>&lt;numpy&nbsp;array&gt;:&nbsp;normalize&nbsp;the&nbsp;'input'&nbsp;by&nbsp;its&nbsp;sum</tt></dd></dl>
  <dl><dt><a name="-plot_to_file"><strong>plot_to_file</strong></a>(filename)</dt><dd><tt>option&nbsp;to&nbsp;save&nbsp;the&nbsp;plot&nbsp;to&nbsp;a&nbsp;file</tt></dd></dl>
- <dl><dt><a name="-pulse_shape"><strong>pulse_shape</strong></a>(wp, mask)</dt><dd><tt>&lt;<a href="#incident_wp">incident_wp</a>&gt;:&nbsp;return&nbsp;an&nbsp;<a href="#incident_wp">incident_wp</a>&nbsp;whose&nbsp;spectral&nbsp;phases&nbsp;are&nbsp;shaped&nbsp;from&nbsp;'wp',<br>
-&nbsp;<br>
-according&nbsp;to&nbsp;'mask'&nbsp;array.&nbsp;need&nbsp;len(mask)==wp.get_size().</tt></dd></dl>
+ <dl><dt><a name="-sasr_mask"><strong>sasr_mask</strong></a>(wp, layer, K)</dt><dd><tt>&lt;numpy&nbsp;array&gt;&nbsp;"serial&nbsp;asr"&nbsp;:&nbsp;return&nbsp;the&nbsp;mask&nbsp;which&nbsp;is&nbsp;the&nbsp;alternating&nbsp;<br>
+anti-symmetric&nbsp;random&nbsp;phase&nbsp;masks&nbsp;centered&nbsp;at&nbsp;highest&nbsp;K&nbsp;peaks&nbsp;of&nbsp;the&nbsp;1PIS&nbsp;in&nbsp;'layer'</tt></dd></dl>
  <dl><dt><a name="-save"><strong>save</strong></a>(stack, filename)</dt><dd><tt>&lt;void&gt;:&nbsp;save&nbsp;a&nbsp;set&nbsp;of&nbsp;<a href="#random_stack">random_stack</a>&nbsp;to&nbsp;a&nbsp;set&nbsp;(of&nbsp;save&nbsp;size)&nbsp;of&nbsp;text&nbsp;files</tt></dd></dl>
  <dl><dt><a name="-search_emission_mode"><strong>search_emission_mode</strong></a>(stack, search_size, wlrange, gstep)</dt></dl>
  <dl><dt><a name="-sigma_index"><strong>sigma_index</strong></a>(input)</dt><dd><tt>&lt;float&gt;:&nbsp;calculate&nbsp;the&nbsp;sigma&nbsp;of&nbsp;the&nbsp;index</tt></dd></dl>
+ <dl><dt><a name="-smear"><strong>smear</strong></a>(mask, Npixel)</dt><dd><tt>&lt;numpy&nbsp;array&gt;:&nbsp;return&nbsp;a&nbsp;new&nbsp;mask&nbsp;where&nbsp;every&nbsp;Npixel&nbsp;entries&nbsp;are&nbsp;made&nbsp;identical&nbsp;(smeared)</tt></dd></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#55aa55">
