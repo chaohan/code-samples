@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
       <title> Title for the browser head bar </title>
+      <link href="styles.css" type="text/css" rel="stylesheet">
       <!-- the following meta enables device customizable viewing of the page -->
       <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width" />
 </head>
@@ -9,7 +10,7 @@
       <!-- headline separator comment-->
       <h1 id="top"> Part 1: Headline Structure (this is a level 1 headline) </h1>
       <p> Level 1 paragrah (and <a href="#bottom"> this</a> 
-      is a navigator to the bootom of this page) </p>
+      is a navigator to the bottom of this page) </p>
             <h2> Level 2 headline </h2>
             <p> Level 2 paragrah, with some <b> bold-face </b> fonts, also known
             as <strong> strong </strong> fonts </p>
@@ -21,12 +22,13 @@
                   </p>
       
       <hr/>
-      <p> long horizontal lines<p>
+      <p><div class="mydiv">long horizontal lines</div></p>
       <hr/>
       
       <h1> Part 2: Quotations and Fonts </h1>
       <p> Quotation can be in quotation marks <q>like this</q>, or as a block:
             <blockquote cite="http://www.wikipedia.com">
+                  
                   the cited source is only shown in the source code<br/>
                   but can be added here as <br/>
                   <a href="http://en.wikipedia.com" target="_blank">
@@ -37,24 +39,23 @@
                   <abbr title="wikipedia"> WIKI</abbr>, or
                   <acronym title="Something Something Something">
                         S3
-                  </acronym>
-                  <font size="1"> texts of size 1 </font> <br/>
-                  <font size="2"> texts of size 2 </font> <br/>
-                  <font size="3"> texts of size 3 </font> <br/>
-                  <font size="4"> texts of size 4 </font> <br/>
-                  <font size="5"> texts of size 5 </font> <br/>
-                  <font size="6"> texts of size 6 </font> <br/>
-                  <font size="7"> texts of size 7 </font> <br/>
+                  </acronym><br/>
+                  
+                  <script>      
+                        for(i=1;i<=7;i++) 
+                        {document.write('<font size="'+i+'">'+'texts of size '+i+'</font> <br/>');} 
+                  </script>
+                  <br/>
 
             </blockquote>
       </p>
 
       <hr/>
-      <p> long horizontal lines<p>
+      <p> <div class="mydiv">long horizontal lines</div></p>
       <hr/>
       
       <!-- headline separator comment-->
-      <h1> Part 3: Text styles & Lists</h1>
+      <h1> Part 3: Text styles &amp; Lists</h1>
 
       <p> Paragraph-1: display a numbered/ordered list:
             <ol>
@@ -89,7 +90,7 @@
             </dl>
       </p>
       
-      <p> Paragraph-6: <a href='subfolder/index.html'>link</a> to a subfoler page
+      <p id="linkplace"> Paragraph-6: <a href='subfolder/index.html'>link</a> to a subfoler page
       </p>
       
 
@@ -124,17 +125,118 @@
 
       <h1>Part 5: Tables</h1>
       <p> an example table:
-            <table>
-                  <tr> <th>(top-left corner cell)</th> <th scope="col">col-1</th> <th scope="col">col-2</th> <th scope="col">col-3</th></tr>
-                  <tr> <th scope="row">row-1</th>  <td>A</td> <td>B</td> <td>C</td> </tr>
-                  <tr> <th scope="row">row-2</th>  <td>D</td> <td>E</td> <td rowspan="2">F(row-2&3)</td> </tr>
-                  <tr> <th scope="row">row-3</th>  <td colspan="2"> G(col-1&2) </td> </tr>
-                        
+            <table class="mydiv" border="1">
+                  <thead>
+                        <tr>  <th>(top-left corner cell)</th> 
+                              <th scope="col" width="100">col-1</th> 
+                              <th scope="col">col-2</th> 
+                              <th scope="col" width="200">col-3</th></tr>
+                  </thead>
+                  <tbody>
+                        <tr> <th scope="row">row-1</th>  <td>A</td> <td>B</td> <td>C</td> </tr>
+                        <tr> <th scope="row">row-2</th>  <td>D</td> <td>E</td> <td rowspan="2">F (row 2 and 3)</td> </tr>
+                        <tr> <th scope="row">row-3</th>  <td colspan="2"> G (col 1 and 2) </td> </tr>
+                  </tbody>
+                  <tfoot>
+                        <tr><th scope="row"> summaries</th> <td>summary</td><td>summary</td><td>summary</td></tr>
+                  </tfoot>
             </table>
       </p>
 
+      <h1>Part 6: Forms</h1>
+      <form>
+            <p> This is a sample form. Note that in codes, each element also need "name" and "value"
+            attributes, which will correspond to the proper variable name and value the data is sent to.
+            The entire form element can be sent to server.</p>
+            
+            <p><label for="textinput"> single-line text input </label>: 
+                  <input name="textinput" type="text" size="10" maxlength="20"/>
+                  <input type="submit" value="Also a submit button indiciating action towards the text"/> 
+            </p>
+            
+            <p>password-type hidden text input: <input type="password" size="10" maxlength="20"/></p>
+            
+            <p>a text area:</p>
+            <textarea cols="100" rows="4"> some default text (note that minimum area is set)</textarea>
+            
+            
+            <fieldset> <legend>The legend of the fieldset </legend>
+            <p>some radio buttons (giving them the same "name" result in unique selection):
+            <input type="radio" name="singleButton" checked="checked"> 1st Button</input>
+            <input type="radio" name="singleButton"> 2nd Button</input>
+            <input type="radio" name="singleButton"> 3rd Button</input>
+            </p>
+            
+            <p>some checkboxes:
+            <input type="checkbox"> 1st Box</input>
+            <input type="checkbox"> 2nd Box</input>
+            <input type="checkbox"> 3rd Box</input>
+            </p>
+
+            <p>a dropdown selection:
+                  <select> 
+                        <option> option 1</option>
+                        <option> option 2</option>
+                        <option selected="selected"> option 3 (default selection)</option>
+                        <option> option 4</option>
+                        <option> option 5</option>
+                  </select>
+            </p>
+
+            <p>same selection but panned out, allowing multiple selection:
+                  <select multiple="multiple"> 
+                        <option> option 1</option>
+                        <option> option 2</option>
+                        <option selected="selected"> option 3 (default selection)</option>
+                        <option> option 4</option>
+                        <option> option 5</option>
+                  </select>
+            </p>
+
+            <p>allowing file selection and upload: 
+            <input type="file" value="Text indiciating this selects files"/>
+            <input type="submit" value="Text indiciating submission"/> 
+            </p>
+
+            </fieldset>
+
+            <p>an image button can also do submission. It can either be 
+            an image-submission input, or a standalone button with some element in it:</p>
+            <input type="image" src="images/bluebutton.png" width="70" height="30"/>
+            <button><img src="images/bluebutton.png" width="70" height="30"/></button> 
+            <button><a href="http://en.wikipedia.com" target="_blank">Go to Wikipedia</a></button> 
+
+            <p>A search box looks like: 
+                  <input type="search" placeholder="placeholder" />
+            </p>
+      </form>
+
+      <h1>Part 7: Videos</h1>
+      <video width="400" height="300" preload="none" controls src="videos/test.mp4"></video>
+
+      <h1>Part 8: Text Styling Practice</h1>
+      <div class="mydiv2">
+      <table>
+            <tr>
+                  <ti> <embed src="text/t1.txt" width="330" height="300"> </ti>
+                  <ti> <embed src="text/t2.txt" width="330" height="300"> </ti>
+                  <ti> <embed src="text/t3.txt" width="330" height="300"> </ti>
+                  <ti> <embed src="text/t4.txt" width="330" height="300"> </ti>
+            </tr>
+      </table>
+      </div>
+
+      <h1>Part 9: JavaScript</h1>
+      <p id="jstest"> default message </p>
+      <script src="js/test.js"></script> 
 
 
+      <input name="jsname" type="text" size="10" maxlength="20"/>
+      <input type="submit" value="Enter"/> 
+      <script>
+            var element = document.getElementById('jsname')
+            document.write('name entered is ' + element)
+      </script>
 
 
       <hr/>

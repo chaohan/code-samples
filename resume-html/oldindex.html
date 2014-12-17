@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+      <title> Alex Han's Resume </title>
+      <link href="styles.css" type="text/css" rel="stylesheet">
+      <!-- the following meta enables device customizable viewing of the page -->
+      <meta name="robots" content="noindex, nofollow">
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0, width=device-width" />
+</head>
+
+<body>
+      <div class="name"><img src="images/name.png" width="563.8" height="213.8"></div>
+      <!--<div class="name" align="center"><img src="images/name2.png" width="831.8" height="156.8"></div>-->
+      <div class="nav">
+            <ul>
+                  <script>   
+                        var iconAddr = '<img src="images/item.png" width="24" height="24">'
+                        var list = 
+                            ["basic bio & education","employment history",
+                              "technical skills","scientific research, theses & publications",
+                              "professional activities","awards & scholarships"]
+                        for(i=0;i<list.length;i++)
+                        {
+                              document.write('<li>'+iconAddr+list[i])+'</li>';
+                        }
+                  </script>
+            </ul>
+      </div>    
+          
+      <hr>
+      <ul>
+            <li><img src="images/email.png" width="30" height="30">
+                  <a href="mailto:hanchao@gmail.com">hanchao@gmail.com</a></li>
+            <li><img src="images/tel.png" width="30" height="30">778-999-1816</li>
+            <li><a href="http://ca.linkedin.com/in/hanalex">
+                  <img src="images/in.png" width="30" height="30"></a></li>
+            <li id="time"> --:-- </li>
+      </ul>
+
+      <script src="js/time.js"></script>
+
+</body>
+
+</html>
