@@ -1,0 +1,6 @@
+body        {font-family: Helvetica; background-color: lightgrey;}
+h1,h2,h3    {color:maroon; text-transform: capitalize;}
+p           {color:black}
+blockquote  {color:green; font-style: italic}
+a           {color:darkblue}
+.mydiv      {background-color: rgba(255,120,0,0.99)}

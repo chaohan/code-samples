@@ -7,13 +7,22 @@
 
 <style type="text/css">
       body { font-size: 90%; font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif; }
-      ul#contacts li {padding: 10px 10px 0px;  display: inline; }
+      .name {
+                  width: 220px; font-size: 300%; color: white; 
+                  padding: 50px 10px 20px 100px; background-color: #2F5D7C; 
+                  border-radius: 10px;
+            }
+      .contacts li {padding: 5px 5px 0px; display: inline;}
+      .contacts { border-radius: 10px; padding: 50px 0px 0px 30px;}
       ul#tabs { list-style-type: none; margin: 20px 0 0 0; padding: 0 0 0.3em 0; }
-      ul#tabs li { display: inline; text-transform: capitalize;}
+      ul#tabs li { display: inline; text-transform: capitalize; line-height: 210%;}
       ul#tabs li a { color: #42454a; background-color: white; border-bottom: none; padding: 0.3em; text-decoration: none; }
       ul#tabs li a:hover { background-color: #f1f0ee; }
-      ul#tabs li a.selected { color: #000; background-color: lightgrey; font-weight: bold; padding: 0.7em 0.3em 0.38em 0.3em; }
-      div.tabContent { line-height: 200%; border: 0px solid; padding: 0.5em; background-color: white; }
+      ul#tabs li a.selected { color: black; background-color: #B7C9D3; font-weight: bold; padding: 0.7em 0.3em 0.38em 0.3em; }
+      div.tabContent { 
+                        line-height: 200%; border: 0px solid; padding: 0.5em; 
+                        background-color: white; 
+                  }
       div.tabContent.hide { display: none; }
 </style>
 
@@ -88,28 +97,38 @@
 </head>
 
 <body onload="init()">
-      <div class="name"><img src="images/name.png" width="563.8" height="213.8"></div>
-      <!--<div class="name"><img src="images/name2.png" width="831.8" height="156.8"></div>-->
 
-    <ul id="tabs">
-      <li><a href="#1" class="selected"> <img src="images/item.png" width="24" height="24">
-            basic bio &amp; education </a></li>
-      <li><a href="#2"> <img src="images/item.png" width="24" height="24">
-            employment history </a></li>
-      <li><a href="#3"> <img src="images/item.png" width="24" height="24">
-            technical skills </a></li>
-      <li><a href="#4"> <img src="images/item.png" width="24" height="24">
-            scientific research </a></li>
-      <li><a href="#5"> <img src="images/item.png" width="24" height="24">
-            theses &amp; publications</a></li>
-      <li><a href="#6"> <img src="images/item.png" width="24" height="24">
-            professional activities </a></li>
-      <li><a href="#7"> <img src="images/item.png" width="24" height="24">
-            awards &amp; scholarships </a></li>       
-    </ul>
+      <table><tr>
+            <td class="name">Alex Han</td> 
+            <td>  <ul class="contacts">
+                  <li><a href="mailto:hanchao@gmail.com"><img src="images/mail2.png" width="32" height="26"></a></li>
+                  <li><img src="images/tel.png" width="30" height="30">778-999-1816</li>
+                  <li><a href="http://ca.linkedin.com/in/hanalex" target="_blank">
+                  <acronym title="View on LinkedIn"><img src="images/in.png" width="30" height="28"></acronym></a></li>
+                  </ul>
+            </td>
+      </tr></table>
+      
+      
+      <ul id="tabs">
+      <li><a href="#1" class="selected"> <!--<img src="images/item.png" width="24" height="24">-->
+            basic bio &amp; education</a></li>
+      <li><a href="#2"> 
+            employment history</a></li>
+      <li><a href="#3"> 
+            technical skills</a></li>
+      <li><a href="#4"> 
+            scientific research</a></li>
+      <li><a href="#5"> 
+            publications</a></li>
+      <li><a href="#6"> 
+            professional activities</a></li>
+      <li><a href="#7"> 
+            awards &amp; scholarships</a></li>       
+      </ul>
 
     <div class="tabContent" id="1">
-      <ul class="cont">
+      <ul>
             <li>Citizenship: Canadian</li>
             <li>Speaks: English, Chinese Mandarin</li>
             <li> <b>PhD</b> Physics, 2009-present, The University of British Columbia (UBC) </li>
@@ -155,13 +174,20 @@
             <li>Probability, statistical computation and analysis, random processes</li>
             <li>Numerical analysis and modelling </li>
             </ul>
+      <h3>Demo Codes</h3>   
+            <p><a href="">A Python module</a> for optical simulaton of one-dimensional random photonic structures 
+                  (only API's and demo applications are shown, source code is yet private).</p>
+            <p> 
+            <a href="http://nbviewer.ipython.org/github/chaohan/code-samples/tree/master/fortran/">
+            Fortran program</a> for numerical vibrational wave packet propagation in hydrogen cation
+            molecules under femtosecond strong-intensity photoexcitation.
+            </p>
       </div>
     </div>
       
       
       <div class="tabContent hide" id="4">
       <div>
-      <h3>Scientific Research</h3>
       <p>I have been working in the interconnected branch of photo-molecular physics and chemistry, 
             where we utilize ultrafast laser light to design interaction scenarios of physical, 
             chemical and applied-scientific interests. My doctoral research has covered topics spanning</p>
@@ -185,15 +211,20 @@
       <div>
       <h3>Scientific Publication</h3>
       <ul>
-            <li><a href="http://pubs.acs.org/doi/abs/10.1021/jp4023986" target="_blank">
-                  "Nature of quantum states created by one photon absorption: pulsed coherent vs pulsed incoherent light",</a> 
-                  AC Han, M Shapiro, P Brumer, J. Phys. Chem. A 2013, 117, 8199-8204 </li>
-            <li><a href="http://iopscience.iop.org/0953-4075/46/8/085401/" target="_blank">"Linear response in the strong-field domain: ultrafast wave packet interferometry in the continuum",</a>
-                  AC Han, M Shapiro, J. Phys. B: At. Mol. Opt. Phys. 46 (2013) 085401 (invited)</li>
-            <li><a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.183002" target="_blank">"Linear response in the strong field domain",</a>
-                  AC Han, M Shapiro, Phys. Rev. Lett. 108, 183002 (2012)</li>
-            <li><a href="http://iopscience.iop.org/0953-4075/44/15/154018/" target="_blank">"Pulsed adiabatic photoassociation via scattering resonances",</a>
-                  AC Han, E Shapiro, M Shapiro, J. Phys. B: At. Mol. Opt. Phys. 44 (2011) 154018  </li>
+            <li> "Nature of quantum states created by one photon absorption: pulsed coherent vs pulsed incoherent light",
+                  AC Han, M Shapiro, P Brumer, 
+                  <a href="http://pubs.acs.org/doi/abs/10.1021/jp4023986" target="_blank">
+                        J. Phys. Chem. A 2013, 117, 8199-8204</a> </li>
+            <li> "Linear response in the strong-field domain: ultrafast wave packet interferometry in the continuum",
+                  AC Han, M Shapiro, 
+                  <a href="http://iopscience.iop.org/0953-4075/46/8/085401/" target="_blank">
+                        J. Phys. B: At. Mol. Opt. Phys. 46 (2013) 085401</a> (invited)</li>
+            <li>"Linear response in the strong field domain", AC Han, M Shapiro, 
+                  <a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.183002" target="_blank">
+                        Phys. Rev. Lett. 108, 183002 (2012)</a></li>
+            <li>"Pulsed adiabatic photoassociation via scattering resonances", AC Han, E Shapiro, M Shapiro, 
+                  <a href="http://iopscience.iop.org/0953-4075/44/15/154018/" target="_blank">
+                        J. Phys. B: At. Mol. Opt. Phys. 44 (2011) 154018</a>  </li>
       </ul>    
       
       <h3>Academic Theses</h3>
@@ -246,17 +277,21 @@
       
 
       <hr>
-      <ul id="contacts">
-            <li><img src="images/email.png" width="30" height="30">
-            <a href="mailto:hanchao@gmail.com"> hanchao@gmail.com </a></li>
-              
-            <li><img src="images/tel.png" width="30" height="30"> 778-999-1816 </li>
-              
-            <li><a href="http://ca.linkedin.com/in/hanalex" target="_blank">
-                  <img src="images/in.png" width="30" height="30"></a></li>
-            <li id="time"> --:-- </li>
-      </ul>
-
+      <a href="./alexhan_resume.pdf"><font size="3">PDF version</font></a>
+      
+      <!--
+      <p align="right">last modified:
+            <script> 
+                        //var months = ['Jan','Feb','Mar','April','May','Jun','July','Aug','Sept','Oct','Nov','Dec'];
+                        //var mod = new Date();//document.lastModified
+                        //document.write(months[mod.getMonth()]+' '+mod.getDate() +', '+mod.getFullYear());
+                        document.write(document.lastModified);
+            </script>
+      </p>
+      -->
+      
+      <!--
+      <p id="time" align="right"> --:-- <p>
       <script>
             var today = new Date();
             var hours = today.getHours();
@@ -265,6 +300,6 @@
             var element = document.getElementById('time');
             element.textContent = 'Current time: ' + hours + ':' + minutes;
       </script>
-
+      -->
 
 </body></html>

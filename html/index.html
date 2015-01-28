@@ -226,18 +226,23 @@
       </table>
       </div>
 
+      
       <h1>Part 9: JavaScript</h1>
-      <p id="jstest"> default message </p>
-      <script src="js/test.js"></script> 
-
-
-      <input name="jsname" type="text" size="10" maxlength="20"/>
-      <input type="submit" value="Enter"/> 
+      <p id="time"> --:-- </p>
       <script>
-            var element = document.getElementById('jsname')
-            document.write('name entered is ' + element)
+            var today = new Date();
+            var hours = today.getHours();
+            var minutes = today.getMinutes();
+            var element = document.getElementById('time');
+            element.innerHTML = 'current time is ' + hours + ':' + minutes;
+      </script> 
+      
+      
+      <script>
+            var headlines = document.getElementsByTagName("H1");
+            for(j=0;j<headlines.length;j++) { headlines[j].textContent += '...'; }
       </script>
-
+      
 
       <hr/>
       <p id="bottom">
