@@ -140,34 +140,7 @@ namespace stackqueueAlgorithms
                         }
                         cout << "--- end --- " << endl;
                   };
-      };
-      
-      //3.4 Tower of Hanoi
-      class TowerOfHanoiGame
-      {
-            private:
-                  stack<int> sl,sc,sr;
-                  int N;
-            public:
-                  TowerOfHanoiGame(int N)
-                  {
-                        this->N = N;
-                        for (int j=N;j>0;j--) { sl.push(j); };
-                  };
-            
-                  void move() {};
-            
-                  void print() 
-                  {
-                        cout << "-- Game View --" << endl;
-                        printStack(sl);printStack(sc);printStack(sr);
-                        cout << "--o----o----o--" << endl;
-                  };
-            
-            
-      };
-      
-      
+      };      
 };
 
 
@@ -203,12 +176,6 @@ int main()
       for (int j=0;j<3;j++)
       { pS.popPile(); pS.print(); }
       */
-      
-      // testing Tower of Hanoi
-      TowerOfHanoiGame game = TowerOfHanoiGame(4); 
-      game.print();
-      
-      
-      
+
       return 0;
 }
