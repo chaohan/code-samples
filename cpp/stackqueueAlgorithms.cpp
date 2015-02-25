@@ -7,7 +7,7 @@ namespace stackqueueAlgorithms
 {      
       using namespace std;
 
-      // print a stack in the order of oldest to newest element
+      /*  print a stack in from bottom to top */
       template <typename elementType>
       void printStack(stack<elementType> &input)
       {
@@ -26,7 +26,9 @@ namespace stackqueueAlgorithms
             cout << endl;
       };
       
-      // 3.2 
+      /* 3.2 
+            a stack class with O(1) return time for the minimum element
+      */
       template <typename elementType>
       class minStack
       {
@@ -65,7 +67,10 @@ namespace stackqueueAlgorithms
                   void print() { printStack(elements); };
       };
       
-      //3.3
+      /*3.3
+            a conventional stack, but as a stack of "piles" 
+            which are sub-stacks that can also be poped.
+      */
       template <typename elementType>
       class pileStack
       {
@@ -140,6 +145,111 @@ namespace stackqueueAlgorithms
                         }
                         cout << "--- end --- " << endl;
                   };
+      };
+      
+      /*3.5
+            a queue implemented using two stacks 
+       */
+      template <typename elementType>
+      class dsQueue
+      {
+            private:
+                  stack<elementType> ls,rs;
+            
+                  void move(bool print)
+                  {
+                        stack<elementType> *fs,*es;
+                        if (ls.empty()) { es = &ls; fs = &rs; }
+                        else { es = &rs; fs = &ls; }
+                        
+                        while (!fs->empty())
+                        {
+                              elementType e = fs->top();
+                              es->push(e); fs->pop(); 
+                              if (print) { cout << e << "<"; }
+                        }
+                        if (print) { cout << endl; }
+                  };
+            
+                  bool L() {return rs.empty() && !ls.empty();}
+                  bool R() {return ls.empty() && !rs.empty();}
+            
+            public:
+                  bool empty() { return ls.empty() && rs.empty() ;};
+                  
+                  int size() {return ls.size() + rs.size(); };
+                  
+                  void push(elementType newElement) 
+                  {
+                        if (this->R()) { this->move(false); }
+                        ls.push(newElement);
+                  };
+            
+                  void pop() 
+                  {
+                        if (this->L()) { this->move(false); }
+                        if (!this->empty()) { rs.pop(); }
+                  };
+            
+                  elementType front() 
+                  {
+                        if (this->L()) { this->move(false); }
+                        return rs.top();
+                  };
+            
+                  elementType back()
+                  {
+                        if (this->R()) { this->move(false); }
+                        return ls.top();
+                  };
+            
+                  void print()
+                  {
+                        if (this->L()) { this->move(false); }
+                        this->move(true);
+                  };
+      };
+      
+      /* 3.6
+            an insertion-sort type sorting method ( O(N^2) )
+            for a stack using another stack of the same size
+      */
+      template <typename elementType>
+      void slowSort(stack<elementType> &s)
+      {
+            stack<elementType> cache;
+            stack<elementType> *si,*sf,*temp;
+            //elementType e;
+            int iter = 0;
+            int totalLength;
+            
+            while (!s.empty()) { cache.push(s.top()); s.pop(); iter++; }
+            totalLength = iter;
+            
+            si = &cache; sf = &s; 
+            while (iter!=0)
+            {
+                  si->push( filterMove(iter,(totalLength-iter)%2!=0,si,sf) );
+                  temp = si; si = sf; sf = temp;
+                  iter--;
+            }
+            
+           while (!cache.empty()) { s.push(cache.top()); cache.pop(); }
+      }
+      
+      template <typename elementType>
+      elementType filterMove(int N, bool min, stack<elementType> *si, stack<elementType> *sf)
+      {
+            elementType e,t;
+            e = si->top(); si->pop();
+            for (int j=0;j<N-1;j++) 
+            {
+                  t = si->top();
+                  if ( (min && t<e) || (!min && t>e) ) { sf->push(e); e=t; }
+                  else { sf->push(t); }
+                  si->pop();
+            }
+            return e;
       };      
 };
 
@@ -176,6 +286,29 @@ int main()
       for (int j=0;j<3;j++)
       { pS.popPile(); pS.print(); }
       */
-
+      
+      // testing dsQueue
+      /*
+      dsQueue<int> dsq;
+      for (int j=0;j<input.size1();j++)
+      { dsq.push(input(j,0)); }
+      while (!dsq.empty())
+      { 
+            cout << "size= " << dsq.size() << endl;
+            dsq.print();
+            dsq.pop(); 
+      } 
+      */
+      
+      // testing slowSort
+      stack<int> s;
+      
+      for (int j=0;j<input.size1();j++)
+      { s.push(input(j,0)); }
+      printStack(s);
+      slowSort(s);
+      printStack(s);
+      
+      
       return 0;
 }
