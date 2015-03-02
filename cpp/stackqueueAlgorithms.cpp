@@ -1,5 +1,7 @@
 #include <iostream>
+#include <fstream>
 #include <stack>
+#include <queue>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/assignment.hpp>
 
@@ -219,7 +221,6 @@ namespace stackqueueAlgorithms
       {
             stack<elementType> cache;
             stack<elementType> *si,*sf,*temp;
-            //elementType e;
             int iter = 0;
             int totalLength;
             
@@ -237,6 +238,8 @@ namespace stackqueueAlgorithms
            while (!cache.empty()) { s.push(cache.top()); cache.pop(); }
       }
       
+      // move N elements from si to sf, while taking out the 
+      // min (max) if "min" = true (false)
       template <typename elementType>
       elementType filterMove(int N, bool min, stack<elementType> *si, stack<elementType> *sf)
       {
@@ -251,6 +254,36 @@ namespace stackqueueAlgorithms
             }
             return e;
       };      
+      
+      /*
+            print the last K lines of a file in a single run
+            all lines returned if there're fewer than K lines
+      */
+      void printLastKLines(int K, char* filename)
+      {
+            ifstream file(filename);
+            string line;
+            queue<string> q;
+            int count = 0;
+            
+            if (file.is_open())
+            {
+                  while (getline(file,line))
+                  {
+                        q.push(line);
+                        count++;
+                        if (count>K) { q.pop(); }
+                  }         
+                  file.close();
+            }
+            
+            while(!q.empty())
+            {
+                  cout << q.front() << endl;
+                  q.pop();
+            }
+            cout << "total line count: " << count << endl;
+      };
 };
 
 
@@ -301,13 +334,19 @@ int main()
       */
       
       // testing slowSort
+      /*
       stack<int> s;
-      
       for (int j=0;j<input.size1();j++)
       { s.push(input(j,0)); }
       printStack(s);
       slowSort(s);
       printStack(s);
+      */
+      
+      // testing printLastKLines()
+      char filename[] = "data.txt";
+      printLastKLines(4,filename);
+      
       
       
       return 0;
