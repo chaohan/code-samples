@@ -83,15 +83,22 @@ def enum(s,j=0):
 
 class genetic_optimization:
       
-      def __init__(self,genesize,fitness_score,pplsize=50,elitesize=10):
+      def __init__(self,genesize,fitness_score,minimize=True,pplsize=50):
             """
             FITNESS_SCORE: a cutomized callable that takes a numpy array of float numbers
             in [0,1] as input and returns a measure;
             """
             self.genesize      = genesize
             self.fitness_score = fitness_score
-            self.pplsize       = pplsize
-            self.elitesize     = elitesize
+            self.minimize      = minimize
+            
+            if pplsize%5:
+                  self.pplsize = int((pplsize/5)*5)
+                  print "population size adjusted to",self.pplsize
+            else:
+                  self.pplsize = pplsize
+            
+            self.elitesize = pplsize/5
             
             self.population = pd.DataFrame(columns=['genome','fitness'])
             
@@ -109,7 +116,7 @@ class genetic_optimization:
             self.sort_generation()
       
       def sort_generation(self):
-            self.population = self.population.sort('fitness',ascending=0)
+            self.population = self.population.sort('fitness',ascending=self.minimize)
             self.population.index = np.arange(1,self.pplsize+1)
       
       def new_indv(self):
@@ -166,8 +173,8 @@ class genetic_optimization:
                   for j in np.random.random_integers(0,self.genesize-1,size=int(self.genesize*pm[1])):
                         indv[j] = (indv[j]*(1.0 + pm[2]*(2.0*np.random.random()-1.0))) % 1
 
-      def topbreed(self):
+      def bestgene(self):
             return np.array(self.population['genome'][1])
 
-      def topscore(self):
+      def bestscore(self):
             return self.generation_scores()[0]
