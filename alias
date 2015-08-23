@@ -1,0 +1,16 @@
+alias v='vim'
+alias py='python'
+alias ipynb='jupyter notebook'
+
+alias gl='git log --graph --oneline'
+alias gst='git status'
+
+alias cp='cp -v -i'
+alias rm='rm -v -i'
+alias e='exit'
+alias rename='mv'
+alias cl='clear'
+alias ll='ls -l -h -G'
+alias ln='ln -s'
+
+alias work='ssh -X -Y alexhan@shapirolab2.chem.ubc.ca'
